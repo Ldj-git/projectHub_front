@@ -1,4 +1,4 @@
-.mainTable{
+.mainTable {
   border-collapse: separate;
   border-spacing: 0px;
   text-align: center;
@@ -8,14 +8,14 @@
   margin-right: auto;
 }
 
-.mainTable th{
+.mainTable th {
   padding: 7px;
   font-weight: bold;
   vertical-align: top;
   color: rgb(8, 8, 8);
-  background: #a4b2b9 ;
+  background: #a4b2b9;
 }
 
-.write{
+.write {
   margin-left: 1070px;
 }

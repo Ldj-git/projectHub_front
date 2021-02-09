@@ -1,4 +1,4 @@
-.table{
+.table {
   border-collapse: separate;
   border-spacing: 0px;
   text-align: center;
@@ -9,10 +9,10 @@
   margin-right: auto;
 }
 
-.table td{
-    padding: 7px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    color: rgb(8, 8, 8);
-    background: #eee;
+.table td {
+  padding: 7px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  color: rgb(8, 8, 8);
+  background: #eee;
 }

@@ -1,5 +1,5 @@
 export const REGISTER_USER = "REGISTER_USER";
-export const LOGIN_USER ="LOGIN_USER";
+export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 
 //projectAction
@@ -10,3 +10,12 @@ export const MODIFY_FAILURE = "MODIFY_FAILURE";
 export const PROJECT_DELETE = "PROJECT_DELETE";
 export const GET_PROJECT_DETAIL = "GET_PROJECT_DETAIL";
 export const GET_ALL_PROJECT = "GET_ALL_PROJECT";
+
+//teamAction
+export const TEAM_UPLOAD_SUCCESS = "TEAM_UPLOAD_SUCCESS";
+export const TEAM_UPLOAD_FAILURE = "TEAM_UPLOAD_FAILURE";
+export const TEAM_MODIFY_SUCCESS = "TEAM_MODIFY_SUCCESS";
+export const TEAM_MODIFY_FAILURE = "TEAM_MODIFY_FAILURE";
+export const TEAM_DELETE = "TEAM_DELETE";
+export const GET_TEAM_DETAIL = "GET_TEAM_DETAIL";
+export const GET_ALL_TEAM = "GET_ALL_TEAM";
