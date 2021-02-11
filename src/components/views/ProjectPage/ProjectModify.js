@@ -68,9 +68,8 @@ function ProjectModify(props) {
         info: Info,
       };
       console.log(postBody);
-      // 팀 인덱스 요청
 
-      dispatch(projectModify({ postBody, idx })).then((res) => {
+      dispatch(projectModify(postBody)).then((res) => {
         console.log(res);
         if (res) {
           props.history.push(`/project/read/${idx}`);

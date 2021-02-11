@@ -60,12 +60,11 @@ function NewProject(props) {
     } else if (!Info) {
       alert("세부사항을 적어주세요!");
     } else {
-      const formData = new FormData();
-      formData.append("name", Name);
-      formData.append("members", Members);
-      formData.append("title", Title);
-      formData.append("info", Info);
-      formData.append("team_idx", Team_idx); // 팀 인덱스 요청
+      const formData = {
+        team_idx: Team_idx,
+        title: Title,
+        info: Info,
+      };
 
       dispatch(projectUpload(formData)).then((res) => {
         if (res) {

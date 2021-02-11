@@ -12,28 +12,17 @@ import { request } from "../utils/axios";
 import { SERVER_API } from "./config";
 
 // 팀 생성
-export const teamUpload = (datas) => (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+export function teamUpload(dataTosubmit) {
+  const data = request("post", `/team/create`, dataTosubmit);
+
+  return {
+    type: TEAM_UPLOAD_FAILURE,
+    payload: data,
   };
-  console.log(datas);
-  let result = axios
-    .post(`/team/create`, datas, config)
-    .then((res) => {
-      dispatch({ type: TEAM_UPLOAD_SUCCESS, payload: res.data });
-      return true;
-    })
-    .catch((err) => {
-      dispatch({ type: TEAM_UPLOAD_FAILURE, payload: err });
-      return false;
-    });
-  return result;
-};
+}
 
 // 팀 수정
-export function teamModify(dataTosubmit, idx) {
+export function teamModify(dataTosubmit) {
   const data = request("post", "/team/update", dataTosubmit);
 
   return {
