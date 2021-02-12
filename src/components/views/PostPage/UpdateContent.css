@@ -1,0 +1,13 @@
+.Write {
+    display: flex;
+  }
+
+  #title_txt {
+    width: 100%;
+    padding-bottom: 30px;
+    border: none;
+    font-size:30px;
+    border-bottom: solid 1px #ababab;
+    font-weight: bold;
+    text-align: center;
+  }

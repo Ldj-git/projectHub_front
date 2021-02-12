@@ -6,12 +6,21 @@ import { MdAdd } from "react-icons/md";
 import "./ProjectMainPage.css";
 import Project from "./Project";
 import MainNavBar from "../../Parts/NavBar/MainNavBar";
+import postingStore from "../../../_reducers/postingReducer";
+import axios from "axios";
 
 function ProjectMainPage() {
   // 프로젝트 카테고리 눌렀을 때 나오는 화면
   const dispatch = useDispatch();
 
   const [Projects, setProjects] = useState([]);
+
+  useEffect(async () => {
+    var response = await axios.get('http://3.21.104.168:8765/posting/project/1');
+    var _contents = response.data;
+    var newMaxContentId = _contents.length;
+    postingStore.dispatch({type:'CompletePostingContent', _contents, newMaxContentId});
+}, []);
 
   useEffect(() => {
     dispatch(getAllProject()).then((res) => {

@@ -9,7 +9,6 @@ export default class Toc extends Component {
     }
   
     render(){
-      
       var lists = [];
       var contents = this.state.storeState.contents;
       var i=0;

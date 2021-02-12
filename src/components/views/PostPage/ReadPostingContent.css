@@ -1,0 +1,17 @@
+#title_txt {
+    width: 100%;
+    padding-bottom: 30px;
+    border: none;
+    font-size:30px;
+    border-bottom: solid 1px #ababab;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .Readmarkdown {
+    width:100%;
+    height:100vh;
+    padding-top:20px;
+    outline:none;
+    text-align: center;
+  }

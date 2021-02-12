@@ -1,17 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavBar from "../../Parts/NavBar/MainNavBar";
-import { Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import {
-  getProjectDetail,
-  projectDelete,
-} from "../../../_actions/projectAction";
+import { getProjectDetail, projectDelete } from "../../../_actions/projectAction";
 import "./Button.css";
+import postingStore from "../../../_reducers/postingReducer";
+import './ProjectDetail.css';
 
-function ProjectDetail(props) {
-  // 게시물을 눌렀을 때 나오는 화면
+function GetPostingContents() {
+  var contents = postingStore.getState().contents
+  var lists = [];
+  var i=0;
+
+  while(i< contents.length){
+    lists.push(
+      <tbody key={i}>
+      <tr border="1" className="table" align="center">
+        <td width="100px"><Link to={'/project/readContent/' + contents[i].idx}>
+          id: {contents[i].idx}
+        </Link></td>
+      
+        <td width="200px"><Link to={'/project/readContent/' + contents[i].idx}>
+         title: {contents[i].title}
+        </Link></td>
+      
+        <td width="150px"><Link to={'/project/readContent/' + contents[i].idx}>
+          user_id: {contents[i].user_id}
+        </Link></td>
+
+        <td width="250px">
+          addDate: {contents[i].addDate}
+        </td>
+
+        <td width="250px">
+          updateDate: {contents[i].updateDate}
+        </td>
+      </tr>
+      </tbody>
+    )
+    i++;
+  }
+
+  return(
+    <table>
+      {lists}
+    </table>  
+  )
+}
+
+function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
   const param = useParams();
   const idx = param.idx;
   const dispatch = useDispatch();
@@ -113,6 +151,8 @@ function ProjectDetail(props) {
         {/*POSTING 부분*/}
         <div>----------------------------------------------------</div>
         <h4>POSTING</h4>
+        {GetPostingContents()}
+          <Link to={'/project/post/' + idx}><button>ADD POST</button></Link>
       </div>
     </span>
   );
