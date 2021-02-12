@@ -20,7 +20,7 @@ class NavBarPart extends Component {
                                 Projects
                             </Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/">
+                        <LinkContainer to="/aboutus">
                             <Nav.Link>
                                 About Us
                             </Nav.Link>

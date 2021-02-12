@@ -27,7 +27,7 @@ class NavBar extends Component{
                                 Projects
                             </Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/signup">
+                        <LinkContainer to="/aboutus">
                             <Nav.Link>
                                 About Us
                             </Nav.Link>

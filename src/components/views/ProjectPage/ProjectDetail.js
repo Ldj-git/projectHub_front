@@ -104,26 +104,23 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
       <Link to="/project/" className="back">
         <IoMdArrowRoundBack />
       </Link>
-      <br />
-      <br />
       <div align="center">
-        <br />
-        <button className="modify" onClick={onModify}>
+        <div style={{height:"0px"}}>
+          <button className="modify" onClick={onModify}>
           수정
         </button>
-        <button
-          className="delete"
-          style={{ marginLeft: 15 }}
-          onClick={onDelete}
-        >
+        <button className="delete" onClick={onDelete}>
           삭제
         </button>
-        <br />
-        <h4>PROJECT | {Title}</h4>
+        </div>
+        
+        <div>
+          <h4>PROJECT | {Title}</h4>
         <small>Upload Date: {AddDate}</small>
         <br />
         <small>Modify Date: {UpdateDate}</small>
-        <br />
+        </div>
+        
         <br />
 
         <div>
@@ -145,7 +142,6 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
           <br />
           <div>{Info}</div>
         </div>
-        <br />
         <br />
 
         {/*POSTING 부분*/}
