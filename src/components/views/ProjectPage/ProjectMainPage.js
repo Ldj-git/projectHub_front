@@ -8,6 +8,9 @@ import Project from "./Project";
 import MainNavBar from "../../Parts/NavBar/MainNavBar";
 import postingStore from "../../../_reducers/postingReducer";
 import axios from "axios";
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 function ProjectMainPage() {
   // 프로젝트 카테고리 눌렀을 때 나오는 화면
@@ -27,16 +30,21 @@ function ProjectMainPage() {
       setProjects(res.payload);
     });
   }, []);
-
+  //로그인 안되있으면 글쓰기 버튼 안보이게
+  var status = null;
+  if(cookies.get("user")!==undefined){
+    status=<Link to="/project/write" className="write">
+    <MdAdd />
+  </Link>
+  }
   return (
     <main>
       <MainNavBar />
       <br />
       <br />
       <h2 align="center">Projects</h2>
-      <Link to="/project/write" className="write">
-        <MdAdd />
-      </Link>
+      {status}
+      
       <div>
         <div>
           <table border="1" className="mainTable">

@@ -48,6 +48,10 @@ function ProjectModify(props) {
     setInfo(event.currentTarget.value);
   };
 
+  const onChooseTeam = (e) => {
+    props.history.push(`/team`);
+  };
+
   const onModify = (e) => {
     e.preventDefault();
 
@@ -97,7 +101,7 @@ function ProjectModify(props) {
           <div>
             <span>Team Name</span>
             <br />
-            <input value={Name} onChange={onNameHandler} />
+            <input value={Name} onChange={onNameHandler} readOnly/>
           </div>
           <br />
 
@@ -108,8 +112,9 @@ function ProjectModify(props) {
               placeholder="Pick a team member through the button"
               value={Members}
               onChange={onMembersHandler}
+              readOnly
             />
-            <button className="chooseBtn">Choose team</button>
+            {/* <button className="chooseBtn" onClick={onChooseTeam}>Choose team</button> */}
           </div>
           <br />
 

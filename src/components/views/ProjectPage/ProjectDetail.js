@@ -7,6 +7,9 @@ import { getProjectDetail, projectDelete } from "../../../_actions/projectAction
 import "./Button.css";
 import postingStore from "../../../_reducers/postingReducer";
 import './ProjectDetail.css';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 function GetPostingContents() {
   var contents = postingStore.getState().contents
@@ -96,7 +99,20 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
       setOpen(false);
     }
   };
-
+  function modifyStatus(){
+    if(cookies.get("user")!==undefined){
+      return <button className="modify" style={{ marginLeft: "250px" }} onClick={onModify}>수정</button> 
+    }else{
+      return null;
+    }
+  }
+  function deleteStatus(){
+    if(cookies.get("user")!==undefined){
+      return <button className="delete" style={{ marginLeft: "360px" }} onClick={onDelete}>삭제</button>
+    }else{
+      return null;
+    }
+  }
   return (
     <span>
       <NavBar />
@@ -105,8 +121,8 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
         <IoMdArrowRoundBack />
       </Link>
       <div align="center">
-        <button className="modify" style={{ marginLeft: "250px" }} onClick={onModify}>수정</button>
-        <button className="delete" style={{ marginLeft: "360px" }} onClick={onDelete}>삭제</button>
+        {modifyStatus()}
+        {deleteStatus()}
         <h4>PROJECT | {Title}</h4>
         <small>Upload Date: {AddDate}</small>
         <br />
