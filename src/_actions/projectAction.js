@@ -14,6 +14,7 @@ import { SERVER_API } from "./config";
 // 프로젝트 업로드(생성)
 //아직 동작 안됨
 export function projectUpload(dataTosubmit) {
+  console.log(dataTosubmit);
   const data = request("post", "/project/upload", dataTosubmit);
   return {
     type: UPLOAD_FAILURE,

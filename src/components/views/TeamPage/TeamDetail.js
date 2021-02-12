@@ -49,12 +49,12 @@ function TeamDetail(props) {
     return (
         <span>
         <NavBar /><br/>
-        <Link to="/team" className="back">
+        <Link to="/team" style={{marginLeft : "460px"}}>
            <IoMdArrowRoundBack />
-        </Link><br/><br/>
+        </Link>
+        <button className="modify" style={{marginLeft : "750px"}} onClick={onModify}>수정</button>
+        <button className="delete" style={{marginLeft : "810px"}} onClick={onDelete}>삭제</button><br/>
         <div align="center"><br/>
-          <button className="modify" onClick={onModify}>수정</button>
-          <button className="delete" style={{marginLeft : 15}} onClick={onDelete}>삭제</button><br/>
           <h4>| TEAM |</h4><br/>
 
           <div>

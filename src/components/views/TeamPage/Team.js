@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../ProjectPage/Project.css';
 
 
-function Team({idx, name, members}) {
+function Team({idx, name, members}) {       // 여기에 있는 idx는 팀에 관한 idx입니당
     
     var URL= "/team/read/"+idx;
     return (
@@ -18,7 +18,7 @@ function Team({idx, name, members}) {
                 <Link to={URL}>{members}</Link>
             </td>
             <td width="75px">
-                <Link to="/project/write"><button>등록</button></Link>
+                <Link to={{pathname:"/project/write", state: {selectedTeamIdx: idx, selectedMembers:members, selectedName:name}}}><button>등록</button></Link>
             </td>
         </tr>
     )

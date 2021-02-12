@@ -75,8 +75,6 @@ input {
   color: black;
   background-color: #fff;
   display: block;
-  margin: 20px auto;
-  max-width: 180px;
   text-decoration: none;
   padding: 5px;
   font-family: Arial, sans-serif;
@@ -84,8 +82,6 @@ input {
   border-radius: 10px;
   font-size: small;
   position: relative;
-  top: 107px;
-  left: 140px;
 }
 
 .modify:hover {
@@ -97,8 +93,6 @@ input {
   color: black;
   background-color: #fff;
   display: block;
-  margin: 20px auto;
-  max-width: 180px;
   text-decoration: none;
   padding: 5px;
   font-family: Arial, sans-serif;
@@ -106,8 +100,7 @@ input {
   border-radius: 10px;
   font-size: small;
   position: relative;
-  top: 53px;
-  left: 210px;
+  bottom: 33.5px;
 }
 
 .delete:hover {
