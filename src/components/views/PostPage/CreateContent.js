@@ -1,43 +1,60 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {  useDispatch } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import './CreateContent.css';
-import postingStore from '../../../_reducers/postingReducer';
 import {request} from "../../../utils/axios"
+import {getAllPosting} from "../../../_actions/projectAction";
+
 
 function CreateContent(){
+  const param = useParams();
+  const project_idx = param.project_idx;
+
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+
+  const[contents, setContents] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    dispatch(getAllPosting()).then((res) => {
+      setContents(res.payload);
+    });
+    setLoading(false);
+  }, []);
 
   const[title, setTitle] = useState("");
   const[desc, setDesc] = useState("");    
 
-    const onUpload =  async () => {
-      var newMaxContentId = postingStore.getState().max_content_id + 1;
-      var _contents = Array.from(postingStore.getState().contents);
-      _contents.push({
-        idx:newMaxContentId, 
-        projex_idx:1, 
-        title:title, 
+  const getMaxIdx = () => {
+    var max = -1;
+    var i=0;
+    while(i<contents.length){
+      if(max < contents[i].idx) max = contents[i].idx;
+      i++;
+    }
+    return max;
+  }
+
+    const onUpload = () => {
+      var newMaxContentId = getMaxIdx() + 1;
+
+      const obj = {
+        addDate: "2021-02-06T16:54:17.000Z",
         content:desc,
+        idx:newMaxContentId, 
+        project_idx:Number(project_idx), 
+        title:title, 
         updateDate:null,
         user_id:"test",
-        addDate: "2021-02-06T16:54:17.000Z",
-      })
-      postingStore.dispatch({type:'CompletePostingContent', _contents})
-    
-        const obj = {
-          addDate: "2021-02-06T16:54:17.000Z",
-          content:desc,
-          idx:newMaxContentId, 
-          project_idx:1, 
-          title:title, 
-          updateDate:null,
-          user_id:"test",
-          withCredentials: true
-          };
+        withCredentials: true
+        };
 
-          const rresponse = request("post", "/posting/upload", obj);
-        console.log(rresponse);
+      const rresponse = request("post", "/posting/upload/", obj);
+      console.log(rresponse);
+
+      contents.push(obj);
     }
 
     const handleChangeTITLE = (e) => {

@@ -8,68 +8,56 @@ import {request} from "../../../utils/axios"
 
 //this.props.match.params
 
-export default class UpdateContent extends Component {
-  constructor(props)
-  {
-    super(props);
-    const getIdx = () => {
-      var i=0;
-      while(i<store.getState().contents.length){
-        if(Number(this.props.match.params.idx) === store.getState().contents[i].idx){
-          return i;
-        }
-        i++;
-      }
-    }
+function UpdateContent(){
+  const param = useParams();
+  const project_idx = param.project_idx;
+  const content_idx = param.content_idx;
 
-    this.state = {
-    content_idx:getIdx(),
-    idx:store.getState().contents[getIdx()].idx,
-    title:store.getState().contents[getIdx()].title,
-    content:store.getState().contents[getIdx()].content,
-    }
-  }
+  const [title,setTitle] = useState([]);
+  const [content,setContent] = useState([]);
 
-    render(){
-      const onModify = () => {
-        var updatedData = {title:this.state.title, content:this.state.content}
+  useEffect(async()=>{
+    var response = await axios.get('http://3.21.104.168:8765/posting/' + content_idx);
+    setTitle(response.data[0].title);
+    setContent(response.data[0].content);
+  },[])
 
-        const response = request("post", "/posting/update/" + this.state.idx , updatedData)
-        console.log(response);
-      }
+  const onModify = () => {
+   var updatedData = {title:title, content:content}
 
-      return(
-        <div>
-          <article>
-            <input type="hidden" name="id" value={this.state.idx}></input>
-            <p>
-               <input 
-                  id='title_txt' 
-                  type="text" 
-                  name="title" 
-                  value={this.state.title} 
-                  onChange={function(e){
-                    this.setState({
-                      [e.target.name]:e.target.value
-                    })
-                  }.bind(this)}>
-                </input>
-            </p>
-            <div className="Write">
-              <textarea 
-                className='textarea' 
-                name="content" 
-                value={this.state.content}
-                onChange={function(e){
-                  this.setState({
-                    [e.target.name]:e.target.value
-                  })
-                }.bind(this)}/>
-             <ReactMarkdown source={this.state.content} className='markdown'/>
-            </div>
-        </article>
-        <button style={{fontSize:30}} onClick={onModify}>수정하기</button>
+  const response = request("post", "/posting/update/" + content_idx , updatedData)
+  console.log(response);
+ }
+
+
+return(
+  <div>
+    <article>
+       <input type="hidden" name="id" value={content_idx}></input>
+       <p>
+          <input 
+            id='title_txt' 
+            type="text" 
+            name="title" 
+            defaultValue={title} 
+             onChange={function(e){
+              setTitle(e.target.value);
+             }.bind(this)}>
+          </input>
+      </p>
+      <div className="Write">
+         <textarea 
+           className='textarea' 
+           name="content" 
+           defaultValue={content}
+          onChange={function(e){
+            setContent(e.target.value);
+          }.bind(this)}/>
+       <ReactMarkdown source={content} className='markdown'/>
       </div>
-      )
-    }
-  }
+   </article>
+   <Link to="/project"><button style={{fontSize:30}} onClick={onModify}>수정하기</button></Link>
+</div>)
+}
+
+  export default UpdateContent

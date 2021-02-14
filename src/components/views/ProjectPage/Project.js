@@ -5,7 +5,7 @@ import "./Project.css";
 function Project({ idx, title, name, members, addDate }) {
   // List에 출력되는 게시물
 
-  var URL = "/project/read/" + idx;
+  var URL = "/project/" + idx + "/read/";
   return (
     <tr border="1" className="table" align="center">
       <td width="50px">

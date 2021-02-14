@@ -15,7 +15,7 @@ function ProjectModify(props) {
   const dispatch = useDispatch();
   const param = useParams();
   const idx = param.idx;
-  var URL = "/project/read/" + idx;
+  var URL = "/project/" + idx + "/read/";
 
   const [Name, setName] = useState("");
   const [Members, setMembers] = useState("");
@@ -76,7 +76,7 @@ function ProjectModify(props) {
       dispatch(projectModify(postBody)).then((res) => {
         console.log(res);
         if (res) {
-          props.history.push(`/project/read/${idx}`);
+          props.history.push(`/project/${idx}/read/`);
         } else {
           alert("게시물 수정에 실패했습니다.");
         }

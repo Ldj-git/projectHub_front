@@ -6,6 +6,8 @@ import {
   PROJECT_DELETE,
   GET_PROJECT_DETAIL,
   GET_ALL_PROJECT,
+  GET_POSTING_DETAIL,
+  GET_ALL_POSTING,
 } from "./types";
 import axios from "axios";
 import { request } from "../utils/axios";
@@ -98,6 +100,28 @@ export function getAllProject() {
 
   return {
     type: GET_ALL_PROJECT,
+    payload: request,
+  };
+}
+
+export function getAllPosting() {
+  const request = axios
+    .get(`http://3.21.104.168:8765/posting`)
+    .then((res) => res.data);
+
+  return {
+    type: GET_ALL_POSTING,
+    payload: request,
+  };
+}
+
+export function getPostingDetail(idx) {
+  const request = axios
+    .get(`http://3.21.104.168:8765/posting/project/${idx}`)
+    .then((res) => res.data);
+
+  return {
+    type: GET_POSTING_DETAIL,
     payload: request,
   };
 }

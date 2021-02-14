@@ -8,27 +8,34 @@ import "./Button.css";
 import postingStore from "../../../_reducers/postingReducer";
 import './ProjectDetail.css';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
 const cookies = new Cookies();
 
-function GetPostingContents() {
-  var contents = postingStore.getState().contents
+function GetPostingContents(idx) {
+  const [contents,setContents] = useState([]);
+  
+  useEffect(async() => {
+    var response = await axios.get('http://3.21.104.168:8765/posting');
+    setContents(response.data);
+  },[]);
   var lists = [];
   var i=0;
 
   while(i< contents.length){
+    if(Number(idx) === contents[i].project_idx){
     lists.push(
       <tbody key={i}>
       <tr border="1" className="table" align="center">
-        <td width="100px"><Link to={'/project/readContent/' + contents[i].idx}>
+        <td width="100px"><Link to={'/project/' + idx + "/readContent/" + contents[i].idx}>
           id: {contents[i].idx}
         </Link></td>
       
-        <td width="200px"><Link to={'/project/readContent/' + contents[i].idx}>
+        <td width="200px"><Link to={'/project/' + idx + "/readContent/" + contents[i].idx}>
          title: {contents[i].title}
         </Link></td>
       
-        <td width="150px"><Link to={'/project/readContent/' + contents[i].idx}>
+        <td width="150px"><Link to={'/project/' + idx + "/readContent/" + contents[i].idx}>
           user_id: {contents[i].user_id}
         </Link></td>
 
@@ -42,6 +49,7 @@ function GetPostingContents() {
       </tr>
       </tbody>
     )
+    }
     i++;
   }
 
@@ -55,6 +63,7 @@ function GetPostingContents() {
 function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
   const param = useParams();
   const idx = param.idx;
+  console.log(idx);
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -66,9 +75,10 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
   const [Title, setTitle] = useState("");
   const [Info, setInfo] = useState("");
 
-  const [Team_idx, setTeam_idx] = useState(""); // 팀 인덱스 값 임의로 지정
+  const [Team_idx, setTeam_idx] = useState(""); // 팀 인덱스 값 
 
   useEffect(() => {
+    console.log(idx);
     dispatch(getProjectDetail(idx)).then((res) => {
       console.log(res);
       setAddDate(res.payload.addDate);
@@ -90,7 +100,7 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
     if (window.confirm("Delete this posting?")) {
       dispatch(projectDelete(idx)).then((response) => {
         if (response) {
-          props.history.push(`/`);
+          props.history.push(`/project`);
         } else {
           alert("삭제에 실패했습니다!!");
         }
@@ -99,14 +109,14 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
       setOpen(false);
     }
   };
-  function modifyStatus(){
+  function modifyStatus(){  //로그인 여부에 따라 버튼 보이게 설정
     if(cookies.get("user")!==undefined){
       return <button className="modify" style={{ marginLeft: "250px" }} onClick={onModify}>수정</button> 
     }else{
       return null;
     }
   }
-  function deleteStatus(){
+  function deleteStatus(){ //로그인 여부에 따라 버튼 보이게 설정
     if(cookies.get("user")!==undefined){
       return <button className="delete" style={{ marginLeft: "360px" }} onClick={onDelete}>삭제</button>
     }else{
@@ -154,8 +164,8 @@ function ProjectDetail(props) { // 게시물을 눌렀을 때 나오는 화면
         {/*POSTING 부분*/}
         <div>----------------------------------------------------</div>
         <h4>POSTING</h4>
-        {GetPostingContents()}
-          <Link to={'/project/post/' + idx}><button>ADD POST</button></Link>
+        {GetPostingContents(idx)}
+          <Link to={'/project/' + idx + "/post/"}><button>ADD POST</button></Link>
       </div>
     </span>
   );

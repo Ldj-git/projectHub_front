@@ -6,8 +6,6 @@ import { MdAdd } from "react-icons/md";
 import "./ProjectMainPage.css";
 import Project from "./Project";
 import MainNavBar from "../../Parts/NavBar/MainNavBar";
-import postingStore from "../../../_reducers/postingReducer";
-import axios from "axios";
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -18,18 +16,16 @@ function ProjectMainPage() {
 
   const [Projects, setProjects] = useState([]);
 
-  useEffect(async () => {
-    var response = await axios.get('http://3.21.104.168:8765/posting/project/1');
-    var _contents = response.data;
-    var newMaxContentId = _contents.length;
-    postingStore.dispatch({type:'CompletePostingContent', _contents, newMaxContentId});
-}, []);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     dispatch(getAllProject()).then((res) => {
       setProjects(res.payload);
     });
+    setLoading(false);
   }, []);
+
   //로그인 안되있으면 글쓰기 버튼 안보이게
   var status = null;
   if(cookies.get("user")!==undefined){

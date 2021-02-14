@@ -19,3 +19,7 @@ export const TEAM_MODIFY_FAILURE = "TEAM_MODIFY_FAILURE";
 export const TEAM_DELETE = "TEAM_DELETE";
 export const GET_TEAM_DETAIL = "GET_TEAM_DETAIL";
 export const GET_ALL_TEAM = "GET_ALL_TEAM";
+
+//posting
+export const GET_ALL_POSTING = "GET_ALL_POSTING";
+export const GET_POSTING_DETAIL = "GET_POSTING_DETAIL";

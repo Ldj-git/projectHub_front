@@ -65,7 +65,7 @@ function NewProject(props) {  // 글 작성
 
       dispatch(projectUpload(formData)).then((res) => {
         if (res) {
-          props.history.push("/");
+          props.history.push("/project/");
         } else {
           alert("업로드에 실패했습니다!!");
         }
