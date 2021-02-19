@@ -6,23 +6,23 @@
 >   * [개발 노션](https://www.notion.so/IGRUS-2-bb8c7091982346c1bf5941d81f690746)
 >   * [백엔드](https://github.com/Ldj-git/projectHub_back)
 
->![](screen-shot\main.png)
+>![](./screen-shot/main.png)
 > 메인 화면
 
->![](screen-shot\login.png)
+>![](./screen-shot/login.png)
 >로그인 화면
 
->![](screen-shot\signup.png)
+>![](./screen-shot/signup.png)
 >회원가입 화면
 
->![](screen-shot\projectdetail.png)
+>![](./screen-shot/projectdetail.png)
 >프로젝트 예시
 
->![](screen-shot\projectupload.png)
+>![](./screen-shot/projectupload.png)
 >프로젝트 업로드 화면
 
->![](screen-shot\teamlist.png)
+>![](./screen-shot/teamlist.png)
 > 팀 관련 화면
 
->![](screen-shot\postingdetail.png)
+>![](./screen-shot/postingdetail.png)
 > 포스팅 관련 화면
