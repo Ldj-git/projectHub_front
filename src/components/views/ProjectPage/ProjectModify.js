@@ -21,7 +21,7 @@ function ProjectModify(props) {
   const [Members, setMembers] = useState("");
   const [Title, setTitle] = useState("");
   const [Info, setInfo] = useState("");
-  const [Team_idx, setTeam_idx] = useState(""); // 팀 인덱스 값 임의로 지정
+  const [Team_idx, setTeam_idx] = useState(""); 
 
   useEffect(() => {
     dispatch(getProjectDetail(idx)).then((res) => {
@@ -29,6 +29,7 @@ function ProjectModify(props) {
       setMembers(res.payload.members);
       setTitle(res.payload.title);
       setInfo(res.payload.info);
+      setTeam_idx(res.payload.team_idx);
     }, []);
   }, []);
 
@@ -55,19 +56,14 @@ function ProjectModify(props) {
   const onModify = (e) => {
     e.preventDefault();
 
-    if (!Name) {
-      alert("팀 이름을 적어주세요!");
-    } else if (!Members) {
-      alert("팀원을 적어주세요!");
-    } else if (!Title) {
+    if (!Title) {
       alert("제목을 적어주세요!");
     } else if (!Info) {
       alert("세부사항을 적어주세요!");
     } else {
       const postBody = {
         idx: idx,
-        name: Name,
-        members: Members,
+        team_idx: Team_idx,
         title: Title,
         info: Info,
       };
