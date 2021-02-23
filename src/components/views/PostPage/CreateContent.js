@@ -52,7 +52,7 @@ function CreateContent() {
 
     const rresponse = request("post", "/posting/upload/", obj);
     console.log(rresponse);
-
+    window.location.replace("/project/" + project_idx + "/read/");
     //contents.push(obj);
   };
 
@@ -86,11 +86,14 @@ function CreateContent() {
 
         <ReactMarkdown source={desc} className="markdown" />
       </div>
-      <Link to={"/project/" + project_idx + "/read/"}>
+      {/* <Link to={"/project/" + project_idx + "/read/"}>
         <button style={{ fontSize: 40 }} onClick={onUpload}>
           만들기
         </button>
-      </Link>
+      </Link> */}
+      <button style={{ fontSize: 40 }} onClick={onUpload}>
+        만들기
+      </button>
     </article>
   );
 }

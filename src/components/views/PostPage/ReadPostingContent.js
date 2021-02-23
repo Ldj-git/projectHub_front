@@ -40,16 +40,15 @@ function GetButtons(project_idx, content_idx) {
         <Link to={"/project/" + project_idx + "/updateContent/" + content_idx}>
           <button>수정</button>
         </Link>
-        <Link to={"/project/" + project_idx + "/read/"}>
-          <button
-            onClick={function () {
-              const response = request("get", "/posting/delete/" + content_idx);
-              console.log(response);
-            }}
-          >
-            삭제
-          </button>
-        </Link>
+        <button
+          onClick={function () {
+            const response = request("get", "/posting/delete/" + content_idx);
+            console.log(response);
+            window.location.replace("/project/" + project_idx + "/read/");
+          }}
+        >
+          삭제
+        </button>
       </div>
     );
   } else return;

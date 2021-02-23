@@ -32,6 +32,7 @@ function UpdateContent() {
       updatedData
     );
     console.log(response);
+    window.location.replace("/project/" + project_idx + "/read/");
   };
 
   return (
@@ -61,11 +62,14 @@ function UpdateContent() {
           <ReactMarkdown source={content} className="markdown" />
         </div>
       </article>
-      <Link to={"/project/" + project_idx + "/read/"}>
+      {/* <Link to={"/project/" + project_idx + "/read/"}>
         <button style={{ fontSize: 30 }} onClick={onModify}>
           수정하기
         </button>
-      </Link>
+      </Link> */}
+      <button style={{ fontSize: 30 }} onClick={onModify}>
+        수정하기
+      </button>
     </div>
   );
 }
