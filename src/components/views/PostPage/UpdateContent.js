@@ -5,7 +5,7 @@ import store from '../../../_reducers/postingReducer';
 import './UpdateContent.css';
 import axios from 'axios';
 import {request} from "../../../utils/axios"
-
+import { SERVER_API } from "../../../_actions/config";
 //this.props.match.params
 
 function UpdateContent(){
@@ -17,7 +17,7 @@ function UpdateContent(){
   const [content,setContent] = useState([]);
 
   useEffect(async()=>{
-    var response = await axios.get('http://3.21.104.168:8765/posting/' + content_idx);
+    var response = await axios.get(`${SERVER_API}/posting/${content_idx}`);
     setTitle(response.data[0].title);
     setContent(response.data[0].content);
   },[])

@@ -4,13 +4,13 @@ import {Link, useParams} from 'react-router-dom';
 import './ReadPostingContent.css';
 import {request} from "../../../utils/axios"
 import axios from 'axios';
-
+import { SERVER_API } from "../../../_actions/config";
 
 function GetPostingContent(idx){
   const [currentContent,setContent] = useState([]);
 
   useEffect(async() => {
-      var response = await axios.get('http://3.21.104.168:8765/posting/'+idx);
+      var response = await axios.get(`${SERVER_API}/posting/${idx}`);
       setContent(response.data[0]);
     },[]);
 

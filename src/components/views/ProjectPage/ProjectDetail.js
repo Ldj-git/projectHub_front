@@ -9,6 +9,7 @@ import postingStore from "../../../_reducers/postingReducer";
 import './ProjectDetail.css';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import { SERVER_API } from "../../../_actions/config";
 
 const cookies = new Cookies();
 
@@ -16,7 +17,7 @@ function GetPostingContents(idx) {
   const [contents,setContents] = useState([]);
   
   useEffect(async() => {
-    var response = await axios.get('http://3.21.104.168:8765/posting');
+    var response = await axios.get(`${SERVER_API}/posting`);
     setContents(response.data);
   },[]);
   var lists = [];
