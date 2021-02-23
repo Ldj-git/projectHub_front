@@ -34,7 +34,6 @@ class App extends Component {
             <Route exact path="/AboutUs" component={AboutUsPage} />
 
             <Route exact path="/project" component={ProjectMainPage} />
-            <Route exact path="/project" component={ProjectMainPage} />
             <Route exact path="/project/:idx/read/" component={ProjectDetail} />
             <Route exact path="/project/write" component={NewProject} />
             <Route exact path="/project/update/:idx" component={ProjectModify} />

@@ -19,11 +19,9 @@ function ProjectMainPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     dispatch(getAllProject()).then((res) => {
       setProjects(res.payload);
     });
-    setLoading(false);
   }, []);
 
   //로그인 안되있으면 글쓰기 버튼 안보이게
